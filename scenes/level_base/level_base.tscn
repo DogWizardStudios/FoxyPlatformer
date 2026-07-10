@@ -1,8 +1,15 @@
 [gd_scene format=3 uid="uid://cpc3j2fy17hd"]
 
 [ext_resource type="PackedScene" uid="uid://cfk3jubr8nsjp" path="res://scenes/game_hud/game_hud.tscn" id="1_myc1q"]
+[ext_resource type="Texture2D" uid="uid://bdoq1remugyd4" path="res://assets/backgrounds/free-cartoon-forest-game-backgrounds/PNG/Cartoon_Forest_BG_02/Cartoon_Forest_BG_02.png" id="1_u6jkd"]
 
 [node name="LevelBase" type="Node" unique_id=967511087]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1521606015]
+self_modulate = Color(1, 1, 1, 0.5529412)
+position = Vector2(591, 329)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("1_u6jkd")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=527123956]
 
