@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://wmv5dmul4r67"]
+
+[node name="PlayerCamera" type="Camera2D" unique_id=100449430]
+zoom = Vector2(2.5, 2.5)

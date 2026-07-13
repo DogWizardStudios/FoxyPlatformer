@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://6ycietka7se"]
+
+[ext_resource type="Texture2D" uid="uid://kduxgf7wgu6q" path="res://assets/player/player.png" id="1_8afob"]
+[ext_resource type="Script" uid="uid://cd7vgydt8w847" path="res://scenes/player/player.gd" id="1_gmlin"]
+[ext_resource type="PackedScene" uid="uid://wmv5dmul4r67" path="res://scenes/playerCam/player_camera.tscn" id="3_lvxji"]
+[ext_resource type="AudioStream" uid="uid://dgsctfc45r16f" path="res://assets/sounds/jump.wav" id="4_lvxji"]
+[ext_resource type="AudioStream" uid="uid://b42xdf6b6082m" path="res://assets/sounds/land.wav" id="5_p47bc"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0gddg"]
+radius = 7.0
+height = 20.0
+
+[node name="Player" type="CharacterBody2D" unique_id=992238864]
+collision_layer = 2
+script = ExtResource("1_gmlin")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=156806739]
+texture = ExtResource("1_8afob")
+hframes = 19
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=614554079]
+position = Vector2(0, 6)
+shape = SubResource("CapsuleShape2D_0gddg")
+
+[node name="PlayerCamera" parent="." unique_id=100449430 instance=ExtResource("3_lvxji")]
+
+[node name="JumpSound" type="AudioStreamPlayer" parent="." unique_id=1538692280]
+stream = ExtResource("4_lvxji")
+volume_db = -4.0
+
+[node name="LandSound" type="AudioStreamPlayer" parent="." unique_id=1815955212]
+stream = ExtResource("5_p47bc")
+volume_db = 6.0
