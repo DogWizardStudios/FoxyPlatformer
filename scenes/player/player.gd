@@ -13,6 +13,7 @@ const JUMP_SPEED: float = -280.0
 
 var _jumped: bool = false
 var _was_on_floor: bool = false
+var _start_position: Vector2
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump") and is_on_floor():
@@ -21,7 +22,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	_start_position = position
+	SignalHub.reset_player_position.connect(reset_position)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -48,3 +50,8 @@ func handle_movement() -> void:
 		_jumped = false
 		velocity.y = JUMP_SPEED
 		jump_sound.play()
+
+
+func reset_position() -> void:
+	position = _start_position
+	set_position.call_deferred(_start_position)
