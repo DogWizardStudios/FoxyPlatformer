@@ -16,6 +16,14 @@ const JUMP_SPEED: float = -280.0
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var player_camera: Camera2D = $PlayerCamera
 
+var is_still: bool:
+	get: return is_zero_approx(velocity.x)
+
+var is_falling: bool:
+	get: return velocity.y > 0
+
+var is_on_ground: bool:
+	get: return is_on_floor()
 
 var _jumped: bool = false
 var _was_on_floor: bool = false
