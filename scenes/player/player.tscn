@@ -8,18 +8,19 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0gddg"]
 radius = 7.0
-height = 20.0
+height = 16.0
 
 [node name="Player" type="CharacterBody2D" unique_id=992238864]
 collision_layer = 2
 script = ExtResource("1_gmlin")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=156806739]
+scale = Vector2(0.95, 0.95)
 texture = ExtResource("1_8afob")
 hframes = 19
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=614554079]
-position = Vector2(0, 6)
+position = Vector2(0, 7)
 shape = SubResource("CapsuleShape2D_0gddg")
 
 [node name="PlayerCamera" parent="." unique_id=100449430 instance=ExtResource("3_lvxji")]

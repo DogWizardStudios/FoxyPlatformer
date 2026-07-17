@@ -6,9 +6,15 @@ const GRAVITY: float = 690.0
 const RUN_SPEED: float = 100.0
 const JUMP_SPEED: float = -280.0
 
+@export var camera_limit_top: int = -10000
+@export var camera_limit_bottom: int = 10000
+@export var camera_limit_left: int = -10000
+@export var camera_limit_right: int = 10000
+
 @onready var jump_sound: AudioStreamPlayer = $JumpSound
 @onready var land_sound: AudioStreamPlayer = $LandSound
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var player_camera: Camera2D = $PlayerCamera
 
 
 var _jumped: bool = false
@@ -23,8 +29,14 @@ func _unhandled_input(event: InputEvent) -> void:
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_start_position = position
+	set_camera_limits()
 	SignalHub.reset_player_position.connect(reset_position)
 
+func set_camera_limits() -> void:
+	player_camera.limit_top = camera_limit_top
+	player_camera.limit_bottom = camera_limit_bottom
+	player_camera.limit_left = camera_limit_left
+	player_camera.limit_right = camera_limit_right
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
