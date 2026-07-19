@@ -5,6 +5,7 @@ extends CharacterBody2D
 const GRAVITY: float = 690.0
 const RUN_SPEED: float = 100.0
 const JUMP_SPEED: float = -280.0
+const HURT_VELOCITY: Vector2 = Vector2(0.0,-170.0)
 
 @export var camera_limit_top: int = -10000
 @export var camera_limit_bottom: int = 10000
@@ -15,6 +16,11 @@ const JUMP_SPEED: float = -280.0
 @onready var land_sound: AudioStreamPlayer = $LandSound
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var player_camera: Camera2D = $PlayerCamera
+@onready var hurt_timer: Timer = $HurtTimer
+@onready var hurt_sound: AudioStreamPlayer = $HurtSound
+
+var is_hurt: bool:
+	get: return _is_hurt
 
 var is_still: bool:
 	get: return is_zero_approx(velocity.x)
@@ -28,6 +34,7 @@ var is_on_ground: bool:
 var _jumped: bool = false
 var _was_on_floor: bool = false
 var _start_position: Vector2
+var _is_hurt:bool = false
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump") and is_on_floor():
@@ -65,13 +72,27 @@ func check_landed() -> void:
 	_was_on_floor = is_on_floor()
 
 func handle_movement() -> void:
+	if _is_hurt: return
+	
 	velocity.x = Input.get_axis("left", "right") * RUN_SPEED
 	if is_on_floor() and _jumped:
 		_jumped = false
 		velocity.y = JUMP_SPEED
 		jump_sound.play()
 
-
 func reset_position() -> void:
 	position = _start_position
 	set_position.call_deferred(_start_position)
+
+func _on_hurt_area_entered(area: Area2D) -> void:
+	apply_hurt_jump.call_deferred()
+	hurt_sound.play()
+
+func apply_hurt_jump() -> void:
+	if _is_hurt: return
+	_is_hurt = true
+	hurt_timer.start()
+	velocity = HURT_VELOCITY
+
+func _on_hurt_timer_timeout() -> void:
+	_is_hurt = false
