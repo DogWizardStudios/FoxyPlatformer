@@ -5,6 +5,7 @@ extends CharacterBody2D
 const GRAVITY: float = 690.0
 const RUN_SPEED: float = 100.0
 const JUMP_SPEED: float = -280.0
+const STOMP_SPEED: float = -200.0
 const HURT_VELOCITY: Vector2 = Vector2(0.0,-170.0)
 const HURT_FLASH_COUNT: int = 6
 const HURT_FLASH_DURATION: float = 0.2
@@ -103,6 +104,7 @@ func _on_hurt_area_exited(area: Area2D) -> void:
 	_damage_areas.erase(area)
 
 
+
 func apply_hurt_jump() -> void:
 	if _is_hurt: return
 	_is_hurt = true
@@ -113,6 +115,9 @@ func apply_hit() -> void:
 	if _is_invincible: return
 	apply_hurt_jump()
 	become_invicible()
+
+func apply_stomp() -> void:
+	velocity.y = STOMP_SPEED
 
 func become_invicible() -> void:
 	if _is_invincible: return
@@ -135,3 +140,10 @@ func invicible_finished() -> void:
 
 func _on_hurt_timer_timeout() -> void:
 	_is_hurt = false
+
+
+func _on_stomp_area_entered(area: Area2D) -> void:
+	if velocity.y < 0.0 or _is_hurt: return
+	if area is StompBox and not area.is_hit:
+		apply_stomp.call_deferred()
+		area.trigger()
