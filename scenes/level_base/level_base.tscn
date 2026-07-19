@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://6ycietka7se" path="res://scenes/player/player.tscn" id="4_ncu3c"]
 [ext_resource type="PackedScene" uid="uid://bwa2rn565t0rj" path="res://scenes/kill_zone/kill_zone.tscn" id="5_kr674"]
 [ext_resource type="PackedScene" uid="uid://dqfjss2kmbrtb" path="res://scenes/stomp_box/stomp_box.tscn" id="6_tn631"]
+[ext_resource type="PackedScene" uid="uid://pwq60ww4oxrm" path="res://scenes/trampoline/trampoline.tscn" id="7_p2h7h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0gddg"]
 
@@ -51,8 +52,11 @@ collision_layer = 8
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="testhit2" unique_id=967691983]
-position = Vector2(94, 569)
+position = Vector2(172, 551)
 shape = SubResource("CircleShape2D_0fwbk")
 
 [node name="StompBox" parent="testhit2" unique_id=378593160 instance=ExtResource("6_tn631")]
 position = Vector2(57, 587)
+
+[node name="Trampoline" parent="." unique_id=1347253991 instance=ExtResource("7_p2h7h")]
+position = Vector2(167, 574)

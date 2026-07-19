@@ -271,7 +271,7 @@ one_shot = true
 
 [node name="StompArea" type="Area2D" parent="." unique_id=986759155]
 collision_layer = 0
-collision_mask = 16
+collision_mask = 48
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StompArea" unique_id=766518392]
 position = Vector2(-1, 14)
