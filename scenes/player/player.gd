@@ -6,6 +6,9 @@ const GRAVITY: float = 690.0
 const RUN_SPEED: float = 100.0
 const JUMP_SPEED: float = -280.0
 const HURT_VELOCITY: Vector2 = Vector2(0.0,-170.0)
+const HURT_FLASH_COUNT: int = 6
+const HURT_FLASH_DURATION: float = 0.2
+
 
 @export var camera_limit_top: int = -10000
 @export var camera_limit_bottom: int = 10000
@@ -34,7 +37,13 @@ var is_on_ground: bool:
 var _jumped: bool = false
 var _was_on_floor: bool = false
 var _start_position: Vector2
-var _is_hurt:bool = false
+var _is_hurt: bool = false
+var _is_invincible: bool = false
+var _invincible_tween: Tween
+var _damage_areas: Array[Area2D] 
+# Keeps track of all overlapping damage areas so that if we are hit 
+# We re-apply a hit if we are overlapping with any damage area
+# Otherwise you could stay inside the area and not be damaged again
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump") and is_on_floor():
@@ -85,14 +94,44 @@ func reset_position() -> void:
 	set_position.call_deferred(_start_position)
 
 func _on_hurt_area_entered(area: Area2D) -> void:
-	apply_hurt_jump.call_deferred()
+	apply_hit.call_deferred()
 	hurt_sound.play()
+	if area not in _damage_areas:
+		_damage_areas.append(area)
+
+func _on_hurt_area_exited(area: Area2D) -> void:
+	_damage_areas.erase(area)
+
 
 func apply_hurt_jump() -> void:
 	if _is_hurt: return
 	_is_hurt = true
 	hurt_timer.start()
 	velocity = HURT_VELOCITY
+
+func apply_hit() -> void:
+	if _is_invincible: return
+	apply_hurt_jump()
+	become_invicible()
+
+func become_invicible() -> void:
+	if _is_invincible: return
+	_is_invincible = true
+	
+	#prevent overlap of tweens
+	if _invincible_tween and _invincible_tween.is_running():
+		_invincible_tween.kill()
+	
+	_invincible_tween = create_tween()
+	_invincible_tween.set_loops(HURT_FLASH_COUNT)
+	_invincible_tween.tween_property(sprite_2d, "modulate", Color.TRANSPARENT, HURT_FLASH_DURATION)
+	_invincible_tween.tween_property(sprite_2d, "modulate", Color.WHITE_SMOKE, HURT_FLASH_DURATION)
+	_invincible_tween.finished.connect(invicible_finished)
+
+func invicible_finished() -> void:
+	_is_invincible = false
+	if _damage_areas.size() > 0:
+		apply_hit.call_deferred()
 
 func _on_hurt_timer_timeout() -> void:
 	_is_hurt = false
