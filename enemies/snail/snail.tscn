@@ -13,6 +13,7 @@ radius = 6.0
 
 [node name="Snail" unique_id=284284932 instance=ExtResource("1_0b5g0")]
 script = ExtResource("2_jo7rh")
+speed = 40.0
 
 [node name="AnimatedSprite2D" parent="." index="0" unique_id=518088967]
 scale = Vector2(0.75, 0.75)
