@@ -1,21 +1,26 @@
+class_name EnemyBase
+
 extends CharacterBody2D
+
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var wall_ray: RayCast2D = $WallRay
+@onready var floor_ray: RayCast2D = $FloorRay
+@onready var hit_area: Area2D = $HitArea
 
 @export var gravity: float = 690.0
 @export var speed: float = 120.0
 
-@onready var wall_ray: RayCast2D = $WallRay
-@onready var floor_ray: RayCast2D = $FloorRay
-@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
-@onready var hit_area: Area2D = $HitArea
-
 var _direction: int = -1 #left
 
+func _update_behaviour(_delta: float) -> void:
+	pass
 
+func _apply_gravity(_delta: float) -> void:
+	velocity.y += gravity * _delta
 
 func _physics_process(delta: float) -> void:
-	
-	velocity.y += gravity * delta
-	do_walk()
+	_apply_gravity(delta)
+	_update_behaviour(delta)
 	move_and_slide()
 
 func do_walk() -> void:
@@ -39,6 +44,7 @@ func _on_stomp_box_stomped() -> void:
 	animated_sprite_2d.play("hit")
 	set_physics_process.call_deferred(false)
 	hit_area.set_monitorable.call_deferred(false)
+
 
 func _on_animation_finished() -> void:
 	if animated_sprite_2d.animation == "hit":

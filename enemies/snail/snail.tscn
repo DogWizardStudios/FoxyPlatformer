@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://c01gdota46j5f"]
+
+[ext_resource type="PackedScene" uid="uid://b7bmjsdpgdtc1" path="res://enemies/enemy_base/enemy_base.tscn" id="1_0b5g0"]
+[ext_resource type="SpriteFrames" uid="uid://bnt26nmavteop" path="res://resources/snail_frames.tres" id="2_6r8th"]
+[ext_resource type="Script" uid="uid://bjvjipylsc7px" path="res://enemies/snail/snail.gd" id="2_jo7rh"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jo7rh"]
+radius = 5.0
+height = 20.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nlwoh"]
+radius = 6.0
+
+[node name="Snail" unique_id=284284932 instance=ExtResource("1_0b5g0")]
+script = ExtResource("2_jo7rh")
+
+[node name="AnimatedSprite2D" parent="." index="0" unique_id=518088967]
+scale = Vector2(0.75, 0.75)
+sprite_frames = ExtResource("2_6r8th")
+animation = &"walk"
+autoplay = "walk"
+frame = 9
+frame_progress = 0.41389441
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=1412274107]
+position = Vector2(2, 4)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_jo7rh")
+
+[node name="CollisionShape2D" parent="HitArea" parent_id_path=PackedInt32Array(1355172760) index="0" unique_id=198227510]
+position = Vector2(1, 2)
+shape = SubResource("CircleShape2D_nlwoh")

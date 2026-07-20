@@ -5,7 +5,7 @@
 [ext_resource type="TileSet" uid="uid://d2lc75kgx7h14" path="res://resources/tiles.tres" id="3_3tlib"]
 [ext_resource type="PackedScene" uid="uid://6ycietka7se" path="res://scenes/player/player.tscn" id="4_ncu3c"]
 [ext_resource type="PackedScene" uid="uid://bwa2rn565t0rj" path="res://scenes/kill_zone/kill_zone.tscn" id="5_kr674"]
-[ext_resource type="PackedScene" uid="uid://1uv8eysp3njl" path="res://enemies/snail.tscn" id="8_48c0a"]
+[ext_resource type="PackedScene" uid="uid://c01gdota46j5f" path="res://enemies/snail/snail.tscn" id="6_tn631"]
 
 [node name="LevelBase" type="Node" unique_id=967511087]
 metadata/_edit_horizontal_guides_ = [593.0]
@@ -35,8 +35,8 @@ position = Vector2(0, 711)
 
 [node name="Enemies" type="Node" parent="." unique_id=1680204545]
 
-[node name="Snail" parent="Enemies" unique_id=494119713 instance=ExtResource("8_48c0a")]
-position = Vector2(41, 486)
+[node name="Snail" parent="Enemies" unique_id=284284932 instance=ExtResource("6_tn631")]
+position = Vector2(272, 543)
 
-[node name="Snail2" parent="Enemies" unique_id=1582252880 instance=ExtResource("8_48c0a")]
-position = Vector2(228, 565)
+[node name="Snail2" parent="Enemies" unique_id=964700615 instance=ExtResource("6_tn631")]
+position = Vector2(55, 491)
