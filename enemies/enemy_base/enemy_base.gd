@@ -26,7 +26,7 @@ func _physics_process(delta: float) -> void:
 func do_walk() -> void:
 	if wall_ray.is_colliding() or not floor_ray.is_colliding():
 		_direction = -_direction
-		flip_raycasts()
+		_flip_raycasts()
 		flip_sprite()
 	velocity.x = _direction * speed
 
@@ -35,7 +35,7 @@ func flip_sprite() -> void:
 	animated_sprite_2d.flip_h = _direction == 1
 	# -1 is left, so if direction is right, the above evaluates to true
 
-func flip_raycasts() -> void:
+func _flip_raycasts() -> void:
 	wall_ray.target_position *= -1
 	floor_ray.position.x *= -1
 
