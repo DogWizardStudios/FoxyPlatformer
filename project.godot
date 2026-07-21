@@ -72,6 +72,7 @@ next={
 2d_physics/layer_4="enemy_hit"
 2d_physics/layer_5="enemy_stomp"
 2d_physics/layer_6="trampoline"
+2d_physics/layer_7="enemy_body"
 
 [physics]
 

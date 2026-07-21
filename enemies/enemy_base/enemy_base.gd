@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var wall_ray: RayCast2D = $WallRay
 @onready var floor_ray: RayCast2D = $FloorRay
 @onready var hit_area: Area2D = $HitArea
+@onready var timer: Timer = $Timer
 
 @export var gravity: float = 690.0
 @export var speed: float = 120.0
@@ -49,3 +50,6 @@ func _on_stomp_box_stomped() -> void:
 func _on_animation_finished() -> void:
 	if animated_sprite_2d.animation == "hit":
 		queue_free()
+
+func _on_timer_timeout() -> void:
+	pass # Replace with function body.

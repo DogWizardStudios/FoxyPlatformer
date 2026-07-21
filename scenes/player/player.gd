@@ -2,6 +2,8 @@ class_name Player
 
 extends CharacterBody2D
 
+const GROUP_NAME: String = "player"
+
 const GRAVITY: float = 690.0
 const RUN_SPEED: float = 100.0
 const JUMP_SPEED: float = -280.0
@@ -51,6 +53,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump") and is_on_floor():
 		_jumped = true
 
+func _enter_tree() -> void:
+	add_to_group(GROUP_NAME)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

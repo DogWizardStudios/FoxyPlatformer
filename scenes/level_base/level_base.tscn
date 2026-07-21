@@ -26,7 +26,7 @@ tile_map_data = PackedByteArray("AAABACAAAAACAAAAAAACACAAAAACAAAAAAADACAAAAACAAA
 tile_set = ExtResource("3_3tlib")
 
 [node name="Player" parent="." unique_id=992238864 instance=ExtResource("4_ncu3c")]
-position = Vector2(128, 538)
+position = Vector2(55, 483)
 camera_limit_bottom = 595
 camera_limit_left = 15
 
@@ -36,4 +36,7 @@ position = Vector2(0, 711)
 [node name="Enemies" type="Node" parent="." unique_id=1680204545]
 
 [node name="Pig" parent="Enemies" unique_id=284284932 instance=ExtResource("6_tn631")]
-position = Vector2(265, 547)
+position = Vector2(259, 554)
+
+[node name="Pig2" parent="Enemies" unique_id=2083943961 instance=ExtResource("6_tn631")]
+position = Vector2(157, 559)
