@@ -37,3 +37,5 @@ position = Vector2(0, 711)
 
 [node name="Chicken" parent="Enemies" unique_id=284284932 instance=ExtResource("6_tn631")]
 position = Vector2(167, 522)
+jump_force = -250.0
+speed = 15.0

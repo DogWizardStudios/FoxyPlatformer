@@ -44,6 +44,7 @@ func do_angry() -> void:
 	flip_sprite()
 
 func change_state(new_state: PigState) -> void:
+	if _hit: return
 	_state = new_state
 	match _state:
 		PigState.WALK:

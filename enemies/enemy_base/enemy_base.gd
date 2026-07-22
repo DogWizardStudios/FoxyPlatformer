@@ -12,6 +12,7 @@ extends CharacterBody2D
 @export var speed: float = 120.0
 
 var _direction: int = -1 #left
+var _hit: bool = false
 
 func _update_behaviour(_delta: float) -> void:
 	pass
@@ -42,6 +43,8 @@ func _flip_raycasts() -> void:
 
 
 func _on_stomp_box_stomped() -> void:
+	if _hit: return
+	_hit = true
 	animated_sprite_2d.play("hit")
 	set_physics_process.call_deferred(false)
 	hit_area.set_monitorable.call_deferred(false)

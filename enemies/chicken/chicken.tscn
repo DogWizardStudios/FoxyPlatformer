@@ -6,6 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://bs21uw1keygks" path="res://assets/images/enemies/Bird/Ground (40x48).png" id="3_ehpks"]
 [ext_resource type="Texture2D" uid="uid://b0sogf1sdh0sy" path="res://assets/images/enemies/Bird/Fall (40x48).png" id="4_73g01"]
 
+[sub_resource type="Curve" id="Curve_b4351"]
+_data = [Vector2(0, 0.6016949), 0.0, 0.0, 0, 0, Vector2(0.21296299, 0.06748474), 0.0, 0.0, 0, 0, Vector2(0.7407407, 0.07975459), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_jdhbk"]
 atlas = ExtResource("3_b4351")
 region = Rect2(160, 0, 40, 48)
@@ -125,7 +129,9 @@ radius = 7.0
 [node name="Chicken" unique_id=284284932 instance=ExtResource("1_rptyj")]
 script = ExtResource("2_p1udj")
 jump_force = -450.0
+jump_lifetime = 3.0
 walk_duration = 1.5
+gravity_curve = SubResource("Curve_b4351")
 speed = 40.0
 
 [node name="AnimatedSprite2D" parent="." index="0" unique_id=518088967]
