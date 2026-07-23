@@ -5,6 +5,7 @@ extends Area2D
 signal stomped
 
 @export var explosion_scene: PackedScene
+@export var pickup_scene: PackedScene
 
 var _hit: bool = false
 
@@ -17,3 +18,6 @@ func trigger() -> void:
 	stomped.emit()
 	if explosion_scene:
 		SignalHub.emit_spawn_scene(global_position, explosion_scene)
+	
+	if pickup_scene:
+		SignalHub.emit_spawn_scene(global_position, pickup_scene)

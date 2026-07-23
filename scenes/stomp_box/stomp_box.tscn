@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://coq1u3tl4hi4s" path="res://scenes/stomp_box/stomp_box.gd" id="1_0fwbk"]
 [ext_resource type="PackedScene" uid="uid://cyx5uu3r4spo1" path="res://scenes/explosion/explosion.tscn" id="2_vwigu"]
+[ext_resource type="PackedScene" uid="uid://s1wgtjoy8x81" path="res://scenes/pickup/pickup.tscn" id="3_at330"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4eb6g"]
 size = Vector2(16, 2)
@@ -11,6 +12,7 @@ collision_layer = 16
 collision_mask = 0
 script = ExtResource("1_0fwbk")
 explosion_scene = ExtResource("2_vwigu")
+pickup_scene = ExtResource("3_at330")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2044819388]
 shape = SubResource("RectangleShape2D_4eb6g")
