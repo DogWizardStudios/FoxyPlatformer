@@ -1,14 +1,18 @@
 [gd_scene format=4 uid="uid://cpc3j2fy17hd"]
 
 [ext_resource type="PackedScene" uid="uid://cfk3jubr8nsjp" path="res://scenes/game_hud/game_hud.tscn" id="1_myc1q"]
+[ext_resource type="Script" uid="uid://bkrqo1ntn5tbc" path="res://scenes/level_base/level_base.gd" id="1_p2h7h"]
 [ext_resource type="Texture2D" uid="uid://bdoq1remugyd4" path="res://assets/backgrounds/free-cartoon-forest-game-backgrounds/PNG/Cartoon_Forest_BG_02/Cartoon_Forest_BG_02.png" id="1_u6jkd"]
+[ext_resource type="PackedScene" uid="uid://cyx5uu3r4spo1" path="res://scenes/explosion/explosion.tscn" id="2_48c0a"]
 [ext_resource type="TileSet" uid="uid://d2lc75kgx7h14" path="res://resources/tiles.tres" id="3_3tlib"]
 [ext_resource type="PackedScene" uid="uid://6ycietka7se" path="res://scenes/player/player.tscn" id="4_ncu3c"]
 [ext_resource type="PackedScene" uid="uid://bwa2rn565t0rj" path="res://scenes/kill_zone/kill_zone.tscn" id="5_kr674"]
 [ext_resource type="PackedScene" uid="uid://d2n62g134j2x5" path="res://enemies/chicken/chicken.tscn" id="6_tn631"]
 
 [node name="LevelBase" type="Node" unique_id=967511087]
-metadata/_edit_horizontal_guides_ = [593.0]
+script = ExtResource("1_p2h7h")
+explosion = ExtResource("2_48c0a")
+metadata/_edit_horizontal_guides_ = [593.0, 552.0]
 metadata/_edit_vertical_guides_ = [14.0]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1521606015]
