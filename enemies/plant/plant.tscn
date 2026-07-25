@@ -2,6 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://b26dx6rt8dhj2" path="res://assets/images/enemies/plant/Plant.png" id="1_5g5f1"]
 [ext_resource type="Script" uid="uid://2wd6er3m308g" path="res://enemies/plant/plant.gd" id="1_lkf7w"]
+[ext_resource type="PackedScene" uid="uid://b8llajgpvc0qr" path="res://scenes/bullet/bullet.tscn" id="2_ttjko"]
+[ext_resource type="AudioStream" uid="uid://cv4sfr47led01" path="res://assets/sounds/483508__dominikbraun__laser-shot-3.mp3" id="4_kbxqn"]
+[ext_resource type="AudioStream" uid="uid://dx4an8m5tvthm" path="res://assets/sounds/415058__lilmati__retro-laser-shot-06.wav" id="5_65rj5"]
 
 [sub_resource type="Animation" id="Animation_lkf7w"]
 length = 0.001
@@ -52,6 +55,20 @@ tracks/0/keys = {
 "update": 1,
 "values": [11, 12, 13, 14, 15, 16, 17, 18]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"shoot"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kbxqn"]
 _data = {
@@ -60,8 +77,18 @@ _data = {
 &"shoot": SubResource("Animation_8xlk4")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_0gddg"]
+streams_count = 2
+stream_0/stream = ExtResource("4_kbxqn")
+stream_1/stream = ExtResource("5_65rj5")
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kbxqn"]
+radius = 5.0
+height = 20.0
+
 [node name="Plant" type="Node2D" unique_id=1337941192]
 script = ExtResource("1_lkf7w")
+bullet_scene = ExtResource("2_ttjko")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1148253348]
 position = Vector2(-3.0000002, -14.000002)
@@ -82,6 +109,17 @@ wait_time = 3.0
 
 [node name="Muzzle" type="Marker2D" parent="." unique_id=1050912752]
 position = Vector2(-15, -15)
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="." unique_id=1215335102]
+stream = SubResource("AudioStreamRandomizer_0gddg")
+
+[node name="DamageArea" type="Area2D" parent="." unique_id=2038855878]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=1672090998]
+position = Vector2(0, -10)
+shape = SubResource("CapsuleShape2D_kbxqn")
 
 [connection signal="screen_entered" from="ScreenNotifier2D" to="." method="_on_screen_entered"]
 [connection signal="screen_exited" from="ScreenNotifier2D" to="." method="_on_screen_exited"]
