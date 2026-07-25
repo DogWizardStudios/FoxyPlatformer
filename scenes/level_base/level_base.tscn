@@ -7,8 +7,8 @@
 [ext_resource type="TileSet" uid="uid://d2lc75kgx7h14" path="res://resources/tiles.tres" id="3_3tlib"]
 [ext_resource type="PackedScene" uid="uid://6ycietka7se" path="res://scenes/player/player.tscn" id="4_ncu3c"]
 [ext_resource type="PackedScene" uid="uid://bwa2rn565t0rj" path="res://scenes/kill_zone/kill_zone.tscn" id="5_kr674"]
+[ext_resource type="PackedScene" uid="uid://t1r7qxx5lpa3" path="res://enemies/plant/plant.tscn" id="8_cr6la"]
 [ext_resource type="PackedScene" uid="uid://jesdo14ywwfg" path="res://scenes/object_maker/object_maker.tscn" id="9_cr6la"]
-[ext_resource type="PackedScene" uid="uid://c01gdota46j5f" path="res://enemies/snail/snail.tscn" id="9_v0a34"]
 
 [node name="LevelBase" type="Node" unique_id=967511087]
 script = ExtResource("1_p2h7h")
@@ -40,16 +40,10 @@ position = Vector2(0, 711)
 
 [node name="Enemies" type="Node" parent="." unique_id=1680204545]
 
-[node name="Snail" parent="Enemies" unique_id=846800012 instance=ExtResource("9_v0a34")]
-position = Vector2(236, 515)
+[node name="Plant" parent="Enemies" unique_id=1337941192 instance=ExtResource("8_cr6la")]
+position = Vector2(206, 534)
 
-[node name="Snail3" parent="Enemies" unique_id=284284932 instance=ExtResource("9_v0a34")]
-position = Vector2(150, 552)
-
-[node name="Snail4" parent="Enemies" unique_id=1120838024 instance=ExtResource("9_v0a34")]
-position = Vector2(56, 531)
-
-[node name="Snail2" parent="Enemies" unique_id=1421088813 instance=ExtResource("9_v0a34")]
-position = Vector2(12, 538)
+[node name="Plant2" parent="Enemies" unique_id=1947556162 instance=ExtResource("8_cr6la")]
+position = Vector2(496, 518)
 
 [node name="ObjectMaker" parent="." unique_id=1003342303 instance=ExtResource("9_cr6la")]

@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://t1r7qxx5lpa3"]
+
+[ext_resource type="Texture2D" uid="uid://b26dx6rt8dhj2" path="res://assets/images/enemies/plant/Plant.png" id="1_5g5f1"]
+[ext_resource type="Script" uid="uid://2wd6er3m308g" path="res://enemies/plant/plant.gd" id="1_lkf7w"]
+
+[sub_resource type="Animation" id="Animation_lkf7w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_ttjko"]
+resource_name = "idle"
+length = 1.1
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.90000004, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+}
+
+[sub_resource type="Animation" id="Animation_8xlk4"]
+resource_name = "shoot"
+length = 0.8
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.08988138, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [11, 12, 13, 14, 15, 16, 17, 18]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kbxqn"]
+_data = {
+&"RESET": SubResource("Animation_lkf7w"),
+&"idle": SubResource("Animation_ttjko"),
+&"shoot": SubResource("Animation_8xlk4")
+}
+
+[node name="Plant" type="Node2D" unique_id=1337941192]
+script = ExtResource("1_lkf7w")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1148253348]
+position = Vector2(-3.0000002, -14.000002)
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("1_5g5f1")
+hframes = 11
+vframes = 2
+
+[node name="ScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1259124595]
+position = Vector2(0, -20)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1968321438]
+libraries/ = SubResource("AnimationLibrary_kbxqn")
+autoplay = &"idle"
+
+[node name="Timer" type="Timer" parent="." unique_id=660887823]
+wait_time = 3.0
+
+[node name="Muzzle" type="Marker2D" parent="." unique_id=1050912752]
+position = Vector2(-15, -15)
+
+[connection signal="screen_entered" from="ScreenNotifier2D" to="." method="_on_screen_entered"]
+[connection signal="screen_exited" from="ScreenNotifier2D" to="." method="_on_screen_exited"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
